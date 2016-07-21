@@ -7,7 +7,8 @@ Contracts often require random numbers, for example, *games of chance* require a
 > Randomness is the lack of pattern or predictability in events. A random sequence of events, symbols or steps has no order and does not follow an intelligible pattern or combination.
 
 In Information theory, randomness the lack of information in a communication channel and the measure of this absence of information is called *entropy*. 
-Two facts are important for practical applications: 
+Two facts are important for practical applications:
+
 1. it is not possible to prove empirically that a source of randomness is really random. Because randomness is the absence of any information one can only show that there is information in the variable. In the spirit of the scientific method, one can only disprove randomness.
 2. Randomness generated within a (computer-) system is never truly random, but by knowing the seed state and the generator it is possible to predict such random numbers. Such a generator is called *pseudo-random* and often cheaper to obtain than true randomness. 
 
