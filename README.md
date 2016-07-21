@@ -16,8 +16,11 @@ Two facts are important for practical applications:
 2. an external *oracle* via an *oracle provider*, for example [oraclize.it]() and [RealityKeys.com]().
 3. a collaborative *proof of x* implementation.
 4. any refinement and combination of these solutions.
+
 ### What are the criteria for choosing a specific solution?
+
 ### Presenting the pure solutions
+
 #### Block hash
 > Providing random numbers within a deterministic system is, naturally, an impossible task. However, we can approximate with pseudo-random numbers by utilizing data which is generally unknowable at the time of transacting. Such data might include the block’s hash, the block’s timestamp, and the block’s beneficiary address. In order to make it hard for a malicious miner to control those values, one should use the BLOCKHASH operation in order to use hashes of the previous 256 blocks as pseudo-random numbers. For a series of such numbers, a trivial solution would be to add some constant amount and hashing the result.
 
