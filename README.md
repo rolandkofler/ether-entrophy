@@ -52,6 +52,45 @@ assembly {
 ```
 see [BlockHash2RNG.sol](BlockHash2RNG.sol).  
 
-#### 
+#### Oracle RNG
 
+```
+// Ethereum + Solidity
+// This code sample & more @ dev.oraclize.it
+
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+
+contract SimpleDice is usingOraclize {
+  mapping (bytes32 => address) bets;
+    
+  function __callback(bytes32 myid, string result) {
+    if (msg.sender != oraclize_cbAddress()) throw;
+    if ((parseInt(result) > 3)&&(bets[myid].send(2)))
+      log0('win'); // winner AND send didn't fail!
+    else log0('lose'); // loser OR sending failed
+  }
+    
+  function bet() {
+    // we accept just test bets worth 1 Wei :)
+    if ((msg.value != 1)||(this.balance < 2)) throw;
+    rollDice();
+  }
+    
+  function rollDice() private {
+    bytes32 myid = oraclize_query("WolframAlpha",
+                    "random number between 1 and 6");
+    bets[myid] = msg.sender;
+  }
+}
+```
+[SimpleDice by Oraclize.it](https://ethereum.github.io/browser-solidity/#gist=138f23b50a568912cb5747c678d6b1d5&version=soljson-latest.js)
+
+#### Collective RNG
+
+[RNGDAO](https://github.com/randao/randao/blob/master/README.en.md) is an example of a collective effort based Random Number Generator. People get payed to submit random values and their aggregated random number is revealed only after some time.
+
+# References
 https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
+https://www.reddit.com/r/ethereum/comments/4rf03b/why_ethereumlotteryio_uses_bitcoin_blocks_as_a/
+https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract
+https://github.com/randao/randao/blob/master/README.en.md
