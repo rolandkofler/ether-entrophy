@@ -1,12 +1,18 @@
 # Random Generators for Ethereum contracts
 ## What source of entropy suites your project?
 by Roland Kofler
-### Motivation
-Contracts often require random numbers, for example, *games of chance* require a randomly selected winner. Because (1) Ethereum contracts are fully deterministic without any inherent randomness and (2) the internal state of a contract as well as the entire blockchain history is visible to the public, the secure source of entropy is not trivial for such applications. 
-### What is *randomness*?
-> Randomness is the lack of pattern or predictability in events. A random sequence of events, symbols or steps has no order and does not follow an intelligible pattern or combination.
 
-In Information theory, randomness the lack of information in a communication channel and the measure of this absence of information is called *entropy*. 
+### Motivation
+
+Contracts often require random numbers, for example, *games of chance* require a randomly selected winner. Because (1) Ethereum contracts are fully deterministic without any inherent randomness and (2) the internal state of a contract as well as the entire blockchain history is visible to the public, the secure source of entropy is not trivial for such applications. 
+
+### What is *randomness*?
+
+> Randomness is the lack of pattern or predictability in events. A random sequence of events, symbols or steps has no order and does not follow an intelligible pattern or combination.  
+
+[from Wikipedia](https://en.wikipedia.org/wiki/Randomness)
+
+In Information theory randomness is the lack of information in a communication channel and the measure of this absence of information is called *entropy*. 
 Two facts are important for practical applications:
 
 1. it is not possible to prove empirically that a source of randomness is really random. Because randomness is the absence of any information one can only show that there is information in the variable. In the spirit of the scientific method, one can only disprove randomness.
@@ -35,7 +41,7 @@ The possible influencing factors are described in the following list:
 Ethereum Yellow Paper, Gavin Wood http://gavwood.com/paper.pdf
 
 ##### Implementation 
-Simplest form: `block.blockhash(block.number-1)`
+Simplest form: `block.blockhash(block.number-1)`, see [BlockHashRNG.sol].  
 Advanceded form: 
 
 #### 
