@@ -20,7 +20,7 @@ Two facts are important for practical applications:
 
 ### What are the options?
 1. **Block hash PRNG** - the last mined block's hash as a source of randomness: `block.blockhash(block.number-1)`
-2. **Oracle RNG** an external *oracle* via an *oracle provider*, for example [oraclize.it]() and [RealityKeys.com]().
+2. **Oracle RNG** an external *oracle* via an *oracle provider*, for example [oraclize.it](http://oraclize.it) and [RealityKeys.com](http://RealityKeys.com).
 3. **Collab PRNG** a collaborative *proof of x* implementation.
 4. any refinement and combination of these solutions.
 
@@ -42,7 +42,7 @@ Ethereum Yellow Paper, Gavin Wood http://gavwood.com/paper.pdf
 
 ##### Implementation 
 Simplest form: `block.blockhash(block.number-1)`, see [BlockHashRNG.sol](BlockHashRNG.sol).  
-In the advanceded form you collect more entropy by XOR-ing different random variables:
+In the advanced form you collect more entropy by XOR-ing different random variables:
 ```
 uint256 r1 = uint256(block.blockhash(block.number-1));
 uint256 r2 = uint256(block.blockhash(block.number-2));
@@ -51,6 +51,7 @@ assembly {
 }
 ```
 see [BlockHash2RNG.sol](BlockHash2RNG.sol).  
+
 1. **Randomness** - Pseudorandom
 2. **Security of the solution** - random value can be seen by everbody, 'bets' must happen before the block is mined. Miners can attack the solution by refusing to mine if the amount earned is bigger than the mining revenue. There are even derivates that use the bitcoin blockchain because BTC mining fee is higher. But this arises new security concerns with the channel to the Bitcoin blockchain.
 2. **Cost of adoption** - virtually zero, only the cost of running the function in the contract.
