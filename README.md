@@ -42,7 +42,15 @@ Ethereum Yellow Paper, Gavin Wood http://gavwood.com/paper.pdf
 
 ##### Implementation 
 Simplest form: `block.blockhash(block.number-1)`, see [BlockHashRNG.sol](BlockHashRNG.sol).  
-Advanceded form: 
+In the advanceded form you collect more entropy by XOR-ing different random variables:
+```
+uint256 r1 = uint256(block.blockhash(block.number-1));
+uint256 r2 = uint256(block.blockhash(block.number-2));
+assembly {
+    result := xor(r1, r2)
+}
+```
+see [BlockHash2RNG.sol](BlockHash2RNG.sol).  
 
 #### 
 
