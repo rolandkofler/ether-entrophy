@@ -41,7 +41,7 @@ The possible influencing factors are described in the following list:
 Ethereum Yellow Paper, Gavin Wood http://gavwood.com/paper.pdf
 
 ##### Implementation 
-Simplest form: `block.blockhash(block.number-1)`, see [BlockHashRNG.sol]().  
+Simplest form: `block.blockhash(block.number-1)`, see [BlockHashRNG.sol](BlockHashRNG.sol).  
 Advanceded form: 
 
 #### 
