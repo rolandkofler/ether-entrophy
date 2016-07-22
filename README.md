@@ -51,6 +51,11 @@ assembly {
 }
 ```
 see [BlockHash2RNG.sol](BlockHash2RNG.sol).  
+1. **Randomness** - Pseudorandom
+2. **Security of the solution** - random value can be seen by everbody, 'bets' must happen before the block is mined. Miners can attack the solution by refusing to mine if the amount earned is bigger than the mining revenue. There are even derivates that use the bitcoin blockchain because BTC mining fee is higher. But this arises new security concerns with the channel to the Bitcoin blockchain.
+2. **Cost of adoption** - virtually zero, only the cost of running the function in the contract.
+3. **Cost of failure** - the amount at stake, it should be smaller than the mining reward (5 ETH + tx fees) therefore.
+4. **Performance** - uint256 number, splittable on a few dozen smaller values
 
 #### Oracle RNG
 
@@ -85,9 +90,22 @@ contract SimpleDice is usingOraclize {
 ```
 [SimpleDice by Oraclize.it](https://ethereum.github.io/browser-solidity/#gist=138f23b50a568912cb5747c678d6b1d5&version=soljson-latest.js)
 
+1. **Randomness** - truly random
+2. **Security of the solution** - it depends on an external oracle service. This service can have an outage (Oraclize.it runs on high available AWS nodes), shutdown or hacked.
+2. **Cost of adoption** - Fees to the oracle provider, for example querying Random.org from Oracelize.it costs per query 0.01$ (+0.04$ for TLS notary secured connection).
+3. **Cost of failure** - the amount at stake.
+4. **Performance** - limited by the provider of the oracle, potentially virtualy unlimited.
+
+
 #### Collective RNG
 
 [RNGDAO](https://github.com/randao/randao/blob/master/README.en.md) is an example of a collective effort based Random Number Generator. People get payed to submit random values and their aggregated random number is revealed only after some time.
+
+1. **Randomness** - depends on the sources the collective uses
+2. **Security of the solution** - no risk of collution due to the protocol, risk of non-randomness because source is not provable.
+2. **Cost of adoption** - collective needs to be payed for every round
+3. **Cost of failure** - the amount at stake.
+4. **Performance** - needs a few blocks until the protocol settles the final number. Applicability limited and not suited if there are not 2 steps.
 
 # References
 https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
