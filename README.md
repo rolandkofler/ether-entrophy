@@ -13,24 +13,31 @@ Two facts are important for practical applications:
 2. Randomness generated within a (computer-) system is never truly random, but by knowing the seed state and the generator it is possible to predict such random numbers. Such a generator is called *pseudo-random* and often cheaper to obtain than true randomness, at the cost of less security. 
 
 ### What are the options?
-1. the last mined block's hash as a source of randomness: `block.blockhash(block.number-1)`
-2. an external *oracle* via an *oracle provider*, for example [oraclize.it]() and [RealityKeys.com]().
-3. a collaborative *proof of x* implementation.
+1. **Block hash PRNG** - the last mined block's hash as a source of randomness: `block.blockhash(block.number-1)`
+2. **Oracle RNG** an external *oracle* via an *oracle provider*, for example [oraclize.it]() and [RealityKeys.com]().
+3. **Collab PRNG** a collaborative *proof of x* implementation.
 4. any refinement and combination of these solutions.
 
 ### What are the criteria for choosing a specific solution?
 The possible influencing factors are described in the following list:
-1. Randomness
-2. Security of the solution
-2. Cost of adoption
-3. Cost of failure
-4. Performance
+
+1. **Randomness** - is the source random or pseudorandom?  How much entrophy has the psyeudo-random solution? 
+2. **Security of the solution** - how secure is the channel from the source of randomness to the blockchain?
+2. **Cost of adoption** - what are the cost of maintaining the random generator?
+3. **Cost of failure** - what are the possible losses if the source or the channel fails to deliver random numbers?
+4. **Performance** - how often is it possible to optain random numbers?
 
 ### Presenting the pure solutions
 
-#### Block hash
+#### Block hash PRNG
 > Providing random numbers within a deterministic system is, naturally, an impossible task. However, we can approximate with pseudo-random numbers by utilizing data which is generally unknowable at the time of transacting. Such data might include the block’s hash, the block’s timestamp, and the block’s beneficiary address. In order to make it hard for a malicious miner to control those values, one should use the BLOCKHASH operation in order to use hashes of the previous 256 blocks as pseudo-random numbers. For a series of such numbers, a trivial solution would be to add some constant amount and hashing the result.
 
 Ethereum Yellow Paper, Gavin Wood http://gavwood.com/paper.pdf
+
+##### Implementation 
+Simplest form: `block.blockhash(block.number-1)`
+Advanceded form: 
+
+#### 
 
 https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
