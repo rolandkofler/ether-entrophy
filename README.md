@@ -52,11 +52,17 @@ assembly {
 ```
 see [BlockHash2RNG.sol](BlockHash2RNG.sol).  
 
+Advantage: no external source needed.
+Disadvantage: Needs in most caseses a block hash from the future to be secure, see [BlockHashRNG3.sol](BlockHashRNG3.sol).   
+
 1. **Randomness** - Pseudorandom
 2. **Security of the solution** - random value can be seen by everbody, 'bets' must happen before the block is mined. Miners can attack the solution by refusing to mine if the amount earned is bigger than the mining revenue. There are even derivates that use the bitcoin blockchain because BTC mining fee is higher. But this arises new security concerns with the channel to the Bitcoin blockchain.
 2. **Cost of adoption** - virtually zero, only the cost of running the function in the contract.
 3. **Cost of failure** - the amount at stake, it should be smaller than the mining reward (5 ETH + tx fees) therefore.
 4. **Performance** - uint256 number, splittable on a few dozen smaller values
+
+Major advantage of this solution is the independency from external systems.
+Major disadvantage is that two steps are needed to prevent attacks: 1. initiate 
 
 #### Oracle RNG
 
@@ -107,6 +113,8 @@ contract SimpleDice is usingOraclize {
 2. **Cost of adoption** - collective needs to be payed for every round
 3. **Cost of failure** - the amount at stake.
 4. **Performance** - needs a few blocks until the protocol settles the final number. Applicability limited and not suited if there are not 2 steps.
+
+# Combination of multiple sources of randomness 
 
 # References
 https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
