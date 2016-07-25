@@ -112,6 +112,7 @@ contract SimpleDice is usingOraclize {
 4. **Performance** - needs a few blocks until the protocol settles the final number. Applicability limited and not suited if there are not 2 steps.
 
 # Combination of multiple sources of randomness 
+To mitigate an outage of the solutions that rely on external sources of randomness, it would be possible to fall back to the Block Hash solutions
 
 # References
 https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
